@@ -75,7 +75,7 @@ class LoginForm extends React.Component {
                     
                 })
             });
-            /**conferindo se deu tudo certo. */
+            /**conferindo se deu tudo certo retorna menssagem. */
             let result = await res.json();
             if (result && result.sucess === true){
                 this.resetForm();
