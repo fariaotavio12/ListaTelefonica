@@ -1,0 +1,68 @@
+.title {
+    font-size: 1.8em;
+}
+
+.showsRow {
+    margin-bottom: 30px;
+}
+
+.showsRow h2 {
+    margin: 0px 0px 0px 30px;
+}
+
+.showsRow-content {
+    overflow-x: hidden;
+    padding-left: 30px;
+}
+
+.showsRow-list {
+    transition: all ease 0.3s;
+}
+
+.showsRow-item {
+    display: inline-block;
+    width: 150px;
+    cursor: pointer;
+}
+
+.showsRow-item img {
+    width: 100%;
+    transform: scale(0.9);
+    transition: all ease 0.2s;
+}
+
+.showsRow-item img:hover {
+    transform: scale(1);
+}
+
+.fa-chevron-left, .fa-chevron-right {
+    font-size: 30px;
+    color:#fff
+}
+.arrow-navigation-left, .arrow-navigation-right {
+    position: absolute;
+    width: 40px;
+    height: 225px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    opacity: 0;
+    transition: all ease 0.5s;
+}
+
+.arrow-navigation-left {
+    left: 0;
+}
+
+.arrow-navigation-right {
+    right: 0;
+}
+
+.showsRow:hover .arrow-navigation-left,
+.showsRow:hover .arrow-navigation-right {
+    opacity: 1;
+}

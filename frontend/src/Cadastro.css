@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
+
+.paginaCadastro{
+  background-image: url('./imagens/telafundo.jpg');
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+}
+
+.cadastroForm{
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #fff;
+
+  width: 430px;
+  height: 75%;
+
+}
+
+.titulo-cadastro{
+  font-family: 'Orelega One', cursive;
+  font-weight: 300;
+
+}
+
+.login-usuario{
+  position: relative;
+}
+
+.login-usuario input, .login-senha input{
+
+  width: 300px;
+  padding: 13px;
+  border: 0;
+  font-size: 14px;
+  border-bottom: 1px solid;
+  margin-top: 10px;
+  outline: 0;
+}
+
+.mostrar-senha2{
+  position: absolute;
+  margin-bottom: 15px;
+  margin-left: 250px;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  font-size: 17px;
+  color: rgba(10, 47, 196, .7);
+}
+
+/*.login-usuario label, .login-senha label{
+  font-size: 18px;
+  padding: 12px;
+  position: absolute;
+  transform: translate(0, -67px) scale(1);
+  transform-origin: top left;
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+  color: transparent;
+}*/
+
+
+
+.submitButton{
+  padding-top: 16px;
+}
+
+.btn{
+
+  color:#fff;
+  outline: 0;
+  width: 150px;
+  padding:12px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  background-color: rgba(10, 47, 196, .7);
+  margin-top: 35px;
+  align-self: center;
+
+}
+
+.cadastro-span{
+  color:  rgba(10, 47, 196, .7);
+
+}
+
+.classe2{
+  font-family: 'Orelega One', cursive;
+  color: black;
+  text-decoration: none;
+}
+
+.configuracoes{
+  margin-top: 20px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  width: 380px;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.forgot-password{
+  color:red;
+}
+
+
