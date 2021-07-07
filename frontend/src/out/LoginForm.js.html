@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: LoginForm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: LoginForm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import InputField from './InputField';
+import SubmitButton from './SubmitButton';
+import UserStore from './stores/UserStore';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch,
+    useParams
+  } from "react-router-dom";
+
+
+/**
+ * 
+ */
+class LoginForm extends React.Component {
+    /**
+     * 
+     * @param {*Propriedade que o constructor vai receber} props 
+     */
+    constructor(props){
+
+        super(props);
+        this.state = {
+            nome:'',
+            tel_residencial: '',
+            tel_celular: '',
+            email: '',
+            rede_social:'',
+            buttonDisabled:false
+        }
+    }
+    /**
+     * 
+     * @param {*E a variavel que receber o set} property 
+     * @param {*val e o a variavel para confirmar o if} val 
+     * @returns 
+     */
+    setInputValue(property, val){
+        val = val.trim();
+        if(val.length > 120){
+            return;
+        }
+        this.setState({
+            [property]: val
+        })
+    }
+    resetForm(){
+        this.setState({
+            nome:'',
+            tel_residencial: '',
+            tel_celular: '',
+            email: '',
+            rede_social:'',
+            buttonDisabled: false
+        })
+    }
+    async doLogin(){
+        if(!this.state.nome){
+            return;
+        }
+        if(!this.state.tel_residencial){
+            return;
+        }
+        if(!this.state.tel_celular){
+            return;
+        }
+        if(!this.state.email){
+            return;
+        }
+        if(!this.state.rede_social){
+            return;
+        }
+
+        this.setState({
+            buttonDisabled: true
+        })
+        try{
+           
+            
+             
+            
+            let res = await fetch('/AdicionaLista',{
+                method:'post',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    nome:this.state.nome,
+                    tel_residencial:this.state.tel_residencial,
+                    tel_celular:this.state.tel_celular,
+                    email:this.state.email,
+                    rede_social:this.state.rede_social
+                    
+                })
+            });
+            /**conferindo se deu tudo certo. */
+            let result = await res.json();
+            if (result &amp;&amp; result.sucess === true){
+                this.resetForm();
+                alert("Adicionado na lista com sucesso");
+            }
+        }
+        catch(e){
+            console.log(e);
+            this.resetForm();
+
+        }
+    }
+  
+
+render (){
+    return (
+        &lt;div>
+            &lt;br>&lt;/br>
+            &lt;div className = "container ">
+            &lt;div className = "link">
+
+                &lt;div className = "submitButton">
+                &lt;Link to="/" className = "classe1" >Lista Telefonica&lt;/Link>&lt;/div>
+                &lt;/div>
+                &lt;br>&lt;/br>
+                &lt;div className="loginForm">
+                    &lt;br>&lt;/br>
+                    &lt;br>&lt;/br>
+                    &lt;br>&lt;/br>
+                    &lt;InputField
+                        type='text'
+                        placeholder='Digite o nome'
+                        Value={this.state.nome ? this.state.nome : ''}
+                        onChange={ (val) => this.setInputValue('nome' , val)}
+                    />
+                    &lt;InputField
+                        type='text'
+                        placeholder='Digite o telefone residencial'
+                        Value={this.state.tel_residencial ? this.state.tel_residencial : ''}
+                        onChange={ (val) => this.setInputValue('tel_residencial' , val)}
+                    />
+                    &lt;InputField
+                        type='text'
+                        placeholder='Digite o telefone celular'
+                        Value={this.state.tel_celular ? this.state.tel_celular : ''}
+                        onChange={ (val) => this.setInputValue('tel_celular' , val)}
+                    />
+                    &lt;InputField
+                        type='text'
+                        placeholder='Digite o email'
+                        Value={this.state.email ? this.state.email : ''}
+                        onChange={ (val) => this.setInputValue('email' , val)}
+                    />
+                    &lt;InputField
+                        type='text'
+                        placeholder='Digite a rede social'
+                        Value={this.state.rede_social ? this.state.rede_social : ''}
+                        onChange={ (val) => this.setInputValue('rede_social' , val)}
+                    />
+                    
+                    &lt;SubmitButton
+                        text='Adicionar na lista'
+                        disabled={this.state.buttonDisabled}
+                        onClick={ () => this.doLogin()}
+                    />
+                 &lt;/div>
+            &lt;/div>
+      &lt;/div>
+    );
+
+}
+}
+  
+/*&lt;link to='/cadastrar'>Cadastrar&lt;/link>*/
+export default LoginForm;
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LoginForm.html">LoginForm</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Jul 07 2021 15:10:08 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
