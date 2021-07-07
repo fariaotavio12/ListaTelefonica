@@ -25,6 +25,7 @@ class Router {
         }
         adicionaLista(app,conexao){
             app.post('/adicionaLista',(req,res) =>{
+                let nome = req.body.nome;
                 let tel_residencial = req.body.tel_residencial;
                 let tel_celular = req.body.tel_celular;
                 let email = req.body.email;
@@ -39,7 +40,7 @@ class Router {
                     return;
                 }
                 
-                conexao.query('insert into numeros (tel_residencial ,tel_celular, email, rede_social) values( ?, ?, ?, ?)',[tel_residencial,tel_celular,email,rede_social],(err) =>{
+                conexao.query('insert into numeros (nome, tel_residencial ,tel_celular, email, rede_social) values( ?, ?, ?, ?, ?)',[nome, tel_residencial,tel_celular,email,rede_social],(err) =>{
                     if(err){
                         res.json({
                             sucess: false,

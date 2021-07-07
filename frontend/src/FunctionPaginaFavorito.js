@@ -58,6 +58,7 @@ import {
           
           <table border="1">
                 <tr>
+                    <td>Nome</td>
                     <td>Telefone Residencial</td>
                     <td>Telefone Celular</td>
                     <td>Email</td>
@@ -65,12 +66,14 @@ import {
                 </tr>
                 <tr>
                     <td>Ted</td>
+                    <td>Ted</td>
                     <td>22</td>
                     <td>Estudante</td>
                     <td>Estudante</td>
 
                 </tr>
                 <tr>
+                    <td>Ted</td>
                     <td>Ralf</td>
                     <td>26</td>
                     <td>Designerasdasas.cm</td>
@@ -81,6 +84,7 @@ import {
                   
                   
                   <tr>
+                    <td>{lista.nome}</td>
                     <td>{lista.tel_residencial}</td>
                     <td>{lista.tel_celular}</td>
                     <td>{lista.email}</td>

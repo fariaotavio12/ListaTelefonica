@@ -12,11 +12,19 @@ import {
   } from "react-router-dom";
 
 
-/** Contrutor para post no banco de dados. */
+/**
+ * 
+ */
 class LoginForm extends React.Component {
+    /**
+     * 
+     * @param {*Propriedade que o constructor vai receber} props 
+     */
     constructor(props){
+
         super(props);
         this.state = {
+            nome:'',
             tel_residencial: '',
             tel_celular: '',
             email: '',
@@ -24,6 +32,12 @@ class LoginForm extends React.Component {
             buttonDisabled:false
         }
     }
+    /**
+     * 
+     * @param {*E a variavel que receber o set} property 
+     * @param {*val e o a variavel para confirmar o if} val 
+     * @returns 
+     */
     setInputValue(property, val){
         val = val.trim();
         if(val.length > 120){
@@ -35,6 +49,7 @@ class LoginForm extends React.Component {
     }
     resetForm(){
         this.setState({
+            nome:'',
             tel_residencial: '',
             tel_celular: '',
             email: '',
@@ -43,6 +58,9 @@ class LoginForm extends React.Component {
         })
     }
     async doLogin(){
+        if(!this.state.nome){
+            return;
+        }
         if(!this.state.tel_residencial){
             return;
         }
@@ -60,7 +78,10 @@ class LoginForm extends React.Component {
             buttonDisabled: true
         })
         try{
-            /** fetch adicionando no banco de dados. */
+           
+            
+             
+            
             let res = await fetch('/AdicionaLista',{
                 method:'post',
                 headers:{
@@ -68,6 +89,7 @@ class LoginForm extends React.Component {
                     'Content-Type':'application/json'
                 },
                 body:JSON.stringify({
+                    nome:this.state.nome,
                     tel_residencial:this.state.tel_residencial,
                     tel_celular:this.state.tel_celular,
                     email:this.state.email,
@@ -75,7 +97,7 @@ class LoginForm extends React.Component {
                     
                 })
             });
-            /**conferindo se deu tudo certo retorna menssagem. */
+            /**conferindo se deu tudo certo. */
             let result = await res.json();
             if (result && result.sucess === true){
                 this.resetForm();
@@ -105,6 +127,12 @@ render (){
                     <br></br>
                     <br></br>
                     <br></br>
+                    <InputField
+                        type='text'
+                        placeholder='Digite o nome'
+                        Value={this.state.nome ? this.state.nome : ''}
+                        onChange={ (val) => this.setInputValue('nome' , val)}
+                    />
                     <InputField
                         type='text'
                         placeholder='Digite o telefone residencial'
